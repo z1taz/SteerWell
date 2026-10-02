@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SteerWell — You drive the AI. SteerWell follows.</title>
-  <meta name="description" content="SteerWell is an AI meeting assistant for startup teams. Take notes, answer questions, show sources. You choose how much AI you get." />
+  <title>SteerWell: You drive the AI. SteerWell follows.</title>
+  <meta name="description" content="SteerWell is an AI meeting assistant. Take notes, answer questions, show sources. You choose how much AI you get." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+
+  <!-- ============================================================
+       TOP ANNOUNCEMENT BAR
+  ============================================================ -->
+  <aside class="announcement-bar" aria-label="Announcement">
+    <div class="container announcement-bar__inner">
+      <span class="announcement-bar__main">Meetings, on your terms with SteerWell</span>
+      <span class="announcement-bar__divider" aria-hidden="true">:</span>
+      <span class="announcement-bar__supporting">Driver, Passenger, or Just Capture. Choose how much AI you want in the room.</span>
+      <a href="#how-it-works" class="announcement-bar__link">See how it works &rarr;</a>
+    </div>
+  </aside>
 
   <!-- ============================================================
        NAVBAR
@@ -50,13 +62,24 @@
       <div class="hero__bg-gradient" aria-hidden="true"></div>
       <div class="container hero__container">
         <div class="hero__content fade-up">
-          <div class="hero__eyebrow">AI meeting assistant for startup teams</div>
+          <!-- Intro Steering Wheel Animation -->
+          <div class="hero__intro-wheel" id="hero-intro-wheel" aria-hidden="true">
+            <svg class="hero__wheel-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+              <circle cx="50" cy="50" r="42" stroke-width="6" />
+              <circle cx="50" cy="50" r="14" fill="currentColor" stroke="none" />
+              <path d="M50 64 L50 92" stroke-width="6" stroke-linecap="round" />
+              <path d="M37 44 L11 34" stroke-width="6" stroke-linecap="round" />
+              <path d="M63 44 L89 34" stroke-width="6" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="hero__eyebrow">AI meeting assistant</div>
           <h1 class="hero__headline">Who's driving<br /><em>today?</em></h1>
           <p class="hero__tagline">You drive the AI. SteerWell follows.</p>
           <p class="hero__body">SteerWell takes notes, answers questions about your meetings, and shows where each answer came from. You choose how much help you get.</p>
           <div class="hero__actions">
             <a href="#early-access" class="btn btn--primary btn--lg">Join the early-access list</a>
-            <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works ↓</a>
+            <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works &darr;</a>
           </div>
         </div>
 
@@ -67,7 +90,7 @@
               <div class="mockup__dot mockup__dot--red"></div>
               <div class="mockup__dot mockup__dot--yellow"></div>
               <div class="mockup__dot mockup__dot--green"></div>
-              <span class="mockup__title">Product Planning — Live</span>
+              <span class="mockup__title">Product Planning: Live</span>
               <div class="mockup__live-badge"><span class="mockup__live-dot"></span>Recording</div>
             </div>
             <div class="mockup__body">
@@ -93,7 +116,7 @@
               <div class="mockup__transcript">
                 <div class="transcript__line">
                   <span class="transcript__speaker">Priya</span>
-                  <span class="transcript__text">…so the engineering team flagged a dependency. We need to decide if we push the launch.</span>
+                  <span class="transcript__text">...so the engineering team flagged a dependency. We need to decide if we push the launch.</span>
                   <span class="transcript__time">31:48</span>
                 </div>
                 <div class="transcript__line">
@@ -120,12 +143,12 @@
                     </div>
                     <div class="recall__content">
                       <p class="recall__bubble recall__bubble--sw recall__bubble--hint" id="hero-hint-bubble">Think back to the timeline discussion. You changed the target after the engineering estimate.</p>
-                      <p class="recall__bubble recall__bubble--sw recall__bubble--answer" id="hero-answer-bubble" style="display:none">We moved the launch to <strong>October 18</strong> — one week later than planned, after the engineering team flagged a dependency.</p>
-                      <div class="recall__source" id="hero-source">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-                        Product Planning — 32:14
+                      <p class="recall__bubble recall__bubble--sw recall__bubble--answer" id="hero-answer-bubble" style="display:none">We moved the launch to <strong>October 18</strong>, one week later than planned, after the engineering team flagged a dependency.</p>
+                      <div class="recall__source">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                        Product Planning, 32:14
                       </div>
-                      <button class="recall__tell-me" id="hero-tell-me">Just tell me →</button>
+                      <button class="recall__tell-me" id="hero-tell-me">Just tell me &rarr;</button>
                     </div>
                   </div>
                 </div>
@@ -147,17 +170,41 @@
             <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             <span>Transparent capture</span>
           </div>
-          <div class="trust-strip__divider" aria-hidden="true">·</div>
+          <div class="trust-strip__divider" aria-hidden="true">&bull;</div>
           <div class="trust-strip__point">
             <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
             <span>Control how AI helps</span>
           </div>
-          <div class="trust-strip__divider" aria-hidden="true">·</div>
+          <div class="trust-strip__divider" aria-hidden="true">&bull;</div>
           <div class="trust-strip__point">
             <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             <span>Keep what matters</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WORKS WITH ROW
+    ============================================================ -->
+    <section class="works-with fade-up" aria-label="Supported meeting platforms">
+      <div class="container works-with__container">
+        <span class="works-with__label">Works with</span>
+        <div class="works-with__pills">
+          <div class="works-with__pill">
+            <span class="works-with__name">Google Meet</span>
+            <span class="works-with__status works-with__status--available">Available first</span>
+          </div>
+          <div class="works-with__pill">
+            <span class="works-with__name">Zoom</span>
+            <span class="works-with__status works-with__status--soon">Coming soon</span>
+          </div>
+          <div class="works-with__pill">
+            <span class="works-with__name">Microsoft Teams</span>
+            <span class="works-with__status works-with__status--soon">Coming soon</span>
+          </div>
+        </div>
+        <p class="works-with__note">Example availability for this concept.</p>
       </div>
     </section>
 
@@ -195,13 +242,13 @@
                 <img src="assets/driver.png" alt="Driver mode" class="modes__panel-bigicon" />
                 <h3 class="modes__panel-title">Driver</h3>
                 <p class="modes__panel-tagline">"You think. I'll help you remember."</p>
-                <p class="modes__panel-body">SteerWell gives you contextual cues — hints drawn from the actual meeting context — so you can recall information yourself. You stay in the driver's seat. The AI is a co-pilot who knows when to stay quiet.</p>
+                <p class="modes__panel-body">SteerWell gives you contextual cues, hints drawn from the actual meeting context, so you can recall information yourself. You stay in the driver's seat. The AI is a co-pilot who knows when to stay quiet.</p>
                 <p class="modes__panel-body">If you need the direct answer, just ask. SteerWell will give it to you immediately.</p>
                 <div class="modes__panel-use-case">Best for: active learners, people who want to stay engaged, and situations where your own recall matters.</div>
               </div>
               <div class="modes__panel-demo">
                 <div class="mini-mockup">
-                  <div class="mini-mockup__header">Driver Mode — Active</div>
+                  <div class="mini-mockup__header">Driver Mode: Active</div>
                   <div class="mini-mockup__chat">
                     <div class="mini-chat__user">
                       <span class="mini-chat__avatar">Z</span>
@@ -227,13 +274,13 @@
                 <img src="assets/passenger.png" alt="Passenger mode" class="modes__panel-bigicon" />
                 <h3 class="modes__panel-title">Passenger</h3>
                 <p class="modes__panel-tagline">"You relax. I'll handle the recall."</p>
-                <p class="modes__panel-body">SteerWell directly answers your questions using the full meeting context. Answers are precise and backed by source references — the exact moment in the meeting where the information came from.</p>
+                <p class="modes__panel-body">SteerWell directly answers your questions using the full meeting context. Answers are precise and backed by source references, the exact moment in the meeting where the information came from.</p>
                 <p class="modes__panel-body">You focus on the conversation. SteerWell keeps track of the details.</p>
                 <div class="modes__panel-use-case">Best for: back-to-back days, high-context meetings, and when you need answers fast.</div>
               </div>
               <div class="modes__panel-demo">
                 <div class="mini-mockup">
-                  <div class="mini-mockup__header">Passenger Mode — Active</div>
+                  <div class="mini-mockup__header">Passenger Mode: Active</div>
                   <div class="mini-mockup__chat">
                     <div class="mini-chat__user">
                       <span class="mini-chat__avatar">Z</span>
@@ -244,8 +291,8 @@
                       <div>
                         <span class="mini-chat__msg mini-chat__msg--answer">The team agreed on a phased rollout: internal beta by Oct 18, public API in November. Backend owns the timeline.</span>
                         <div class="mini-chat__source">
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-                          Engineering Sync — 18:42
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                          Engineering Sync: 18:42
                         </div>
                       </div>
                     </div>
@@ -268,7 +315,7 @@
               </div>
               <div class="modes__panel-demo">
                 <div class="mini-mockup">
-                  <div class="mini-mockup__header">Just Capture — Transcribing</div>
+                  <div class="mini-mockup__header">Just Capture: Transcribing</div>
                   <div class="mini-mockup__transcript">
                     <div class="mini-transcript__line">
                       <span class="mini-transcript__speaker">Priya</span>
@@ -287,11 +334,11 @@
                     </div>
                     <div class="mini-transcript__cursor">
                       <span class="mini-transcript__pulse"></span>
-                      Transcribing…
+                      Transcribing...
                     </div>
                   </div>
                   <div class="mini-mockup__ai-off">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
                     Active AI assistance is off
                   </div>
                 </div>
@@ -309,40 +356,69 @@
       <div class="container">
         <p class="also-included__label">Also included</p>
         <div class="also-included__grid">
-          <div class="also-included__card fade-up">
+          <!-- Card 1: Exports to -->
+          <div class="also-included__card fade-up" tabindex="0">
             <div class="also-included__card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </div>
             <div class="also-included__card-text">
-              <h4 class="also-included__card-title">Searchable transcripts</h4>
-              <p class="also-included__card-body">Every word, timestamped and searchable. Find any moment fast.</p>
+              <h4 class="also-included__card-title">Exports to</h4>
+              <p class="also-included__card-body">PDF, DOCX, Markdown, Plain text (.TXT), CSV</p>
             </div>
           </div>
-          <div class="also-included__card fade-up" style="--delay:0.05s">
+
+          <!-- Card 2: Auto-organised notes -->
+          <div class="also-included__card fade-up" style="--delay:0.04s" tabindex="0">
             <div class="also-included__card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
             <div class="also-included__card-text">
               <h4 class="also-included__card-title">Auto-organised notes</h4>
-              <p class="also-included__card-body">Chapters, key questions, and action items — sorted automatically.</p>
+              <p class="also-included__card-body">Chapters, key questions, and action items, sorted automatically.</p>
             </div>
           </div>
-          <div class="also-included__card fade-up" style="--delay:0.1s">
+
+          <!-- Card 3: Follow-up notes (Pro) -->
+          <div class="also-included__card fade-up" style="--delay:0.08s" tabindex="0">
             <div class="also-included__card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             </div>
             <div class="also-included__card-text">
-              <h4 class="also-included__card-title">Follow-up notes</h4>
+              <h4 class="also-included__card-title">Follow-up notes <span class="also-included__pro-badge">Pro</span></h4>
               <p class="also-included__card-body">Add your own notes. They land in the right section of the recap.</p>
             </div>
           </div>
-          <div class="also-included__card fade-up" style="--delay:0.15s">
+
+          <!-- Card 4: Cross-meeting memory (Pro) -->
+          <div class="also-included__card fade-up" style="--delay:0.12s" tabindex="0">
             <div class="also-included__card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
             </div>
             <div class="also-included__card-text">
               <h4 class="also-included__card-title">Cross-meeting memory <span class="also-included__pro-badge">Pro</span></h4>
               <p class="also-included__card-body">SteerWell connects context across meetings so you don't start from scratch.</p>
+            </div>
+          </div>
+
+          <!-- Card 5: Auto meeting titles -->
+          <div class="also-included__card fade-up" style="--delay:0.16s" tabindex="0">
+            <div class="also-included__card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+            </div>
+            <div class="also-included__card-text">
+              <h4 class="also-included__card-title">Auto meeting titles</h4>
+              <p class="also-included__card-body">Every meeting gets a clear name automatically. No more Zoom Meeting 1, 2, 3.</p>
+            </div>
+          </div>
+
+          <!-- Card 6: Private speaking feedback -->
+          <div class="also-included__card fade-up" style="--delay:0.2s" tabindex="0">
+            <div class="also-included__card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+            <div class="also-included__card-text">
+              <h4 class="also-included__card-title">Private speaking feedback</h4>
+              <p class="also-included__card-body">See your filler words and speech clarity. Only you can see it.</p>
             </div>
           </div>
         </div>
@@ -350,20 +426,25 @@
     </section>
 
     <!-- ============================================================
-         YOUR DATA  (merged: Transparent capture + Privacy controls)
+         YOUR DATA
     ============================================================ -->
     <section class="section your-data-section" id="privacy">
       <div class="container">
         <div class="section__header fade-up">
           <div class="section__eyebrow">Your data</div>
           <h2 class="section__headline">No mystery participant.</h2>
-          <p class="section__subhead">When SteerWell joins a meeting, it identifies itself and makes clear what it is doing. You control access, retention, and deletion.</p>
+          <p class="section__subhead your-data__subhead">When SteerWell joins, it does not slip in quietly. It introduces itself in the meeting chat and says so out loud, so everyone knows a notetaker is there.</p>
+          <ul class="your-data__list">
+            <li>You steer SteerWell. It never steers you.</li>
+            <li>It joins only the meetings you start.</li>
+            <li>It does not score people or work against your choices.</li>
+          </ul>
         </div>
         <div class="your-data__grid">
           <!-- Chat mockup -->
           <div class="chat-mockup fade-up">
             <div class="chat-mockup__header">
-              <div class="chat-mockup__meeting-name">Product Planning · In progress</div>
+              <div class="chat-mockup__meeting-name">Product Planning: In progress</div>
               <div class="chat-mockup__participants">4 participants</div>
             </div>
             <div class="chat-mockup__messages">
@@ -372,17 +453,21 @@
                 <div class="chat-mockup__msg-body">
                   <div class="chat-mockup__msg-sender">SteerWell</div>
                   <p class="chat-mockup__msg-text">Hi, I'm SteerWell, Ziya's AI meeting assistant. I'm recording and transcribing this meeting. Type 'object' to stop me. The host will decide.</p>
-                  <span class="chat-mockup__privacy-label">Learn what I'm capturing, how it's processed, and how long it's retained → Privacy details</span>
+                  <div class="chat-mockup__spoken-badge">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    <span>Also spoken aloud when SteerWell joins</span>
+                  </div>
+                  <span class="chat-mockup__privacy-label">Learn what I'm capturing, how it's processed, and how long it's retained: Privacy details</span>
                 </div>
               </div>
-              <div class="chat-mockup__divider">· · ·</div>
+              <div class="chat-mockup__divider">. . .</div>
               <div class="chat-mockup__msg chat-mockup__msg--reminder">
                 <div class="chat-mockup__reminder-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
                 </div>
                 <div class="chat-mockup__msg-body">
                   <p class="chat-mockup__msg-text chat-mockup__msg-text--small">This meeting is scheduled to end in 5 minutes.</p>
-                  <span class="chat-mockup__privacy-label">How SteerWell is capturing, processing, and retaining this meeting → Privacy details</span>
+                  <span class="chat-mockup__privacy-label">How SteerWell is capturing, processing, and retaining this meeting: Privacy details</span>
                 </div>
               </div>
             </div>
@@ -396,7 +481,7 @@
             <div class="privacy-card__controls">
               <div class="privacy-control">
                 <div class="privacy-control__icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
                 <div class="privacy-control__info">
                   <div class="privacy-control__label">Access</div>
@@ -406,7 +491,7 @@
               </div>
               <div class="privacy-control">
                 <div class="privacy-control__icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 </div>
                 <div class="privacy-control__info">
                   <div class="privacy-control__label">Retention</div>
@@ -416,7 +501,7 @@
               </div>
               <div class="privacy-control">
                 <div class="privacy-control__icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </div>
                 <div class="privacy-control__info">
                   <div class="privacy-control__label">Export</div>
@@ -426,7 +511,7 @@
               </div>
               <div class="privacy-control">
                 <div class="privacy-control__icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
                 </div>
                 <div class="privacy-control__info">
                   <div class="privacy-control__label">Delete</div>
@@ -436,6 +521,20 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BRAND PHILOSOPHY CALLOUT
+    ============================================================ -->
+    <section class="section philosophy-section" aria-label="Product philosophy">
+      <div class="container">
+        <div class="philosophy-callout fade-up">
+          <div class="philosophy-callout__eyebrow">Product philosophy</div>
+          <h2 class="philosophy-callout__headline">AI shouldn't take the wheel.</h2>
+          <p class="philosophy-callout__body">In a world where software can quietly observe, analyze, and act, SteerWell takes a different approach. It tells you when it's there, shows you what it's doing, and lets you decide how much help you want.</p>
+          <p class="philosophy-callout__closing">You take the wheel. SteerWell follows.</p>
         </div>
       </div>
     </section>
@@ -452,24 +551,24 @@
         <div class="use-cases__grid use-cases__grid--three">
           <div class="use-case-card fade-up">
             <div class="use-case-card__icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
             <h3 class="use-case-card__title">Founders</h3>
             <p class="use-case-card__body">Investor and client calls move fast. Use Passenger mode to get sourced answers instantly. Come back to Driver mode when you want to recall the detail yourself.</p>
           </div>
           <div class="use-case-card fade-up" style="--delay:0.07s">
             <div class="use-case-card__icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <h3 class="use-case-card__title">Team leads</h3>
             <p class="use-case-card__body">Six meetings in a day means details blur fast. Passenger mode gives you the sourced answer in seconds. No rewatching. No guessing.</p>
           </div>
           <div class="use-case-card fade-up" style="--delay:0.14s">
             <div class="use-case-card__icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
             </div>
             <h3 class="use-case-card__title">Creative studios</h3>
-            <p class="use-case-card__body">Film, dance, design — client feedback calls need a clean record, not AI commentary. Just Capture records and transcribes. You read it yourself, later, on your own terms.</p>
+            <p class="use-case-card__body">Film, dance, design: client feedback calls need a clean record, not AI commentary. Just Capture records and transcribes. You read it yourself, later, on your own terms.</p>
           </div>
         </div>
       </div>
@@ -486,25 +585,36 @@
           <p class="section__subhead testimonials__disclaimer">SteerWell is a concept. These are example personas, not real customers.</p>
         </div>
         <div class="testimonials__grid fade-up">
+          <!-- Card 1 -->
           <div class="testimonial-card">
-            <blockquote class="testimonial-card__quote">"On an investor call, everyone could see the notetaker. Later I asked what we agreed and got the answer with the exact moment."</blockquote>
+            <span class="testimonial-card__tag">Example</span>
+            <blockquote class="testimonial-card__quote">"I run five calls a day. SteerWell introduced itself out loud, so nobody was surprised. Later I got my answer with the exact moment it came from."</blockquote>
             <div class="testimonial-card__persona">
               <div class="testimonial-card__role">Founder</div>
-              <div class="testimonial-card__context">Investor &amp; client calls</div>
             </div>
           </div>
+          <!-- Card 2 -->
           <div class="testimonial-card">
-            <blockquote class="testimonial-card__quote">"Six meetings in a day. Passenger mode gives me the answer. Driver mode helps me remember."</blockquote>
+            <span class="testimonial-card__tag">Example</span>
+            <blockquote class="testimonial-card__quote">"Six meetings in a day. Passenger Mode gives me the answer. Driver Mode helps me remember."</blockquote>
             <div class="testimonial-card__persona">
-              <div class="testimonial-card__role">Team lead</div>
-              <div class="testimonial-card__context">Back-to-back days</div>
+              <div class="testimonial-card__role">Founder</div>
             </div>
           </div>
+          <!-- Card 3 -->
           <div class="testimonial-card">
-            <blockquote class="testimonial-card__quote">"I used Just Capture for a sensitive client call and read the transcript myself later."</blockquote>
+            <span class="testimonial-card__tag">Example</span>
+            <blockquote class="testimonial-card__quote">"The useful part isn't that SteerWell remembers the meeting. It's that I can ask it where an answer came from before I act on it."</blockquote>
             <div class="testimonial-card__persona">
-              <div class="testimonial-card__role">Studio owner</div>
-              <div class="testimonial-card__context">Sensitive client calls</div>
+              <div class="testimonial-card__role">Team Lead</div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="testimonial-card">
+            <span class="testimonial-card__tag">Example</span>
+            <blockquote class="testimonial-card__quote">"I don't want my AI deciding when to take the wheel. Some meetings I want help. Some meetings I just want a transcript. SteerWell lets me choose."</blockquote>
+            <div class="testimonial-card__persona">
+              <div class="testimonial-card__role">Product Manager</div>
             </div>
           </div>
         </div>
@@ -519,10 +629,11 @@
         <div class="section__header fade-up">
           <div class="section__eyebrow">Pricing</div>
           <h2 class="section__headline">Start free. Upgrade when you're ready.</h2>
-          <p class="section__subhead">The core SteerWell experience — Driver, Passenger, and Just Capture — is free. No paywall on the modes that make SteerWell different.</p>
+          <p class="section__subhead">The core SteerWell experience, Driver, Passenger, and Just Capture, is free. No paywall on the modes that make SteerWell different.</p>
         </div>
         <div class="pricing__grid fade-up">
 
+          <!-- Free Card -->
           <div class="pricing-card">
             <div class="pricing-card__plan">Free</div>
             <div class="pricing-card__price">₹0<span>/month</span></div>
@@ -532,40 +643,93 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Driver Mode</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Passenger Mode</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Just Capture</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Basic meeting recaps</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sourced answers</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Auto-organised notes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Exports to PDF, DOCX, Markdown, Plain text (.TXT), CSV</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Auto meeting titles</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Private speaking feedback</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Plain talk-time share</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Notes link that opens without an account</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30-day retention</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>PDF export</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Up to 10 meetings a month (example limit)</li>
             </ul>
           </div>
 
+          <!-- Pro Card -->
           <div class="pricing-card pricing-card--featured">
             <div class="pricing-card__badge">Most popular</div>
             <div class="pricing-card__plan">Pro</div>
-            <div class="pricing-card__price">₹799<span>/month</span></div>
+            <div class="pricing-card__price">₹399<span>/month</span></div>
             <p class="pricing-card__desc">For people with many meetings who need memory across them.</p>
             <a href="#early-access" class="btn btn--primary pricing-card__cta">Join the waitlist</a>
             <ul class="pricing-card__features">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Free</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cross-meeting memory</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Follow-up notes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Pre-meeting briefing</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Meeting folders and tags</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Unlimited meetings</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>90-day retention</li>
             </ul>
           </div>
 
-          <div class="pricing-card">
-            <div class="pricing-card__plan">Team</div>
-            <div class="pricing-card__price">Custom</div>
+          <!-- Team Card with feature picker -->
+          <div class="pricing-card pricing-card--team">
+            <div class="pricing-card__plan">Team: build your own plan</div>
+            <div class="pricing-card__price" id="team-price-display">₹367<span>/user/month</span></div>
             <p class="pricing-card__desc">For teams that share knowledge and need admin controls.</p>
-            <a href="#early-access" class="btn btn--outline pricing-card__cta">Talk to us</a>
-            <ul class="pricing-card__features">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Shared meeting knowledge</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Team &amp; admin controls</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>300-day retention</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Custom retention policies</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
-            </ul>
+
+            <div class="team-picker">
+              <p class="team-picker__intro">Pick the features you need. Pay only for those.</p>
+              <div class="team-picker__header">
+                <span class="team-picker__title">Features</span>
+                <span class="team-picker__tag">Example prices</span>
+              </div>
+              <div class="team-picker__list" role="group" aria-label="Team plan features">
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="49" value="Follow-up notes" />
+                  <span class="team-picker__item-label">Follow-up notes</span>
+                  <span class="team-picker__item-price">₹49</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="99" value="Cross-meeting memory" />
+                  <span class="team-picker__item-label">Cross-meeting memory</span>
+                  <span class="team-picker__item-price">₹99</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="79" value="Pre-meeting briefing" />
+                  <span class="team-picker__item-label">Pre-meeting briefing</span>
+                  <span class="team-picker__item-price">₹79</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="39" value="Private speaking feedback" />
+                  <span class="team-picker__item-label">Private speaking feedback</span>
+                  <span class="team-picker__item-price">₹39</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="149" value="Shared team workspace" checked />
+                  <span class="team-picker__item-label">Shared team workspace</span>
+                  <span class="team-picker__item-price">₹149</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="129" value="Admin controls" checked />
+                  <span class="team-picker__item-label">Admin controls</span>
+                  <span class="team-picker__item-price">₹129</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="89" value="300-day retention" checked />
+                  <span class="team-picker__item-label">300-day retention</span>
+                  <span class="team-picker__item-price">₹89</span>
+                </label>
+                <label class="team-picker__item">
+                  <input type="checkbox" class="team-picker__check" data-price="69" value="Custom retention policies" />
+                  <span class="team-picker__item-label">Custom retention policies</span>
+                  <span class="team-picker__item-price">₹69</span>
+                </label>
+              </div>
+
+              <div class="team-picker__status" id="team-picker-status" aria-live="polite"></div>
+              <a href="#early-access" class="btn btn--primary pricing-card__cta" id="team-picker-btn">Request this plan</a>
+            </div>
           </div>
 
         </div>
@@ -574,7 +738,7 @@
     </section>
 
     <!-- ============================================================
-         EARLY ACCESS  (final CTA + form merged)
+         EARLY ACCESS
     ============================================================ -->
     <section class="section early-access-section" id="early-access">
       <div class="container">
@@ -595,7 +759,7 @@
               <div class="early-access__field">
                 <label for="ea-role" class="early-access__label">Role</label>
                 <select id="ea-role" name="role" class="early-access__input early-access__select">
-                  <option value="">Select your role…</option>
+                  <option value="">Select your role...</option>
                   <option value="founder">Founder</option>
                   <option value="team-lead">Team lead</option>
                   <option value="creative">Creative or small business</option>
@@ -643,6 +807,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
