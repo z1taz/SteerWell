@@ -246,9 +246,11 @@ textarea:focus-visible {
   align-items: center;
   min-height: 44px;
   padding-inline: 4px;
+  text-decoration: none;
 }
 .announcement-bar__link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 /* ============================================================
