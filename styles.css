@@ -1607,6 +1607,12 @@ textarea:focus-visible {
   box-shadow: var(--shadow-xs);
 }
 
+.mcp-tool-pill__img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 .mcp-tool-pill__meta {
   display: flex;
   flex-direction: column;
