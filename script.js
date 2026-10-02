@@ -1,6 +1,6 @@
 /* ============================================================
    STEERWELL — JAVASCRIPT
-   Interactions, animations, mode switching
+   Navbar, animations, mode switching, hero recall, form
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,11 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobile-menu');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
   hamburger.addEventListener('click', () => {
@@ -25,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.setAttribute('aria-expanded', isOpen);
     mobileMenu.setAttribute('aria-hidden', !isOpen);
 
-    // Animate hamburger to X
     const spans = hamburger.querySelectorAll('span');
     if (isOpen) {
       spans[0].style.transform = 'translateY(7px) rotate(45deg)';
@@ -66,8 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fadeEls.forEach(el => observer.observe(el));
 
+  // Trigger elements already in view on load
+  fadeEls.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      setTimeout(() => el.classList.add('visible'), 100);
+    }
+  });
+
   // ============================================================
-  // HERO MODE TABS — Switch active mode in hero mockup
+  // HERO MODE TABS — Switch active tab in hero mockup
   // ============================================================
   const heroTabs = document.querySelectorAll('.mockup__mode-tab');
   heroTabs.forEach(tab => {
@@ -78,14 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================================
-  // HERO "Just tell me" — Contextual recall interaction
+  // HERO "Just tell me" — Toggle hint / direct answer
   // ============================================================
   const heroTellMe = document.getElementById('hero-tell-me');
-  const heroHint = document.getElementById('hero-hint-bubble');
+  const heroHint   = document.getElementById('hero-hint-bubble');
   const heroAnswer = document.getElementById('hero-answer-bubble');
 
   if (heroTellMe && heroHint && heroAnswer) {
     let revealed = false;
+
     heroTellMe.addEventListener('click', () => {
       if (!revealed) {
         heroHint.style.display = 'none';
@@ -118,18 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   // THREE MODES TABS — Switch panel + animate
   // ============================================================
-  const modesTabs = document.querySelectorAll('.modes__tab');
+  const modesTabs   = document.querySelectorAll('.modes__tab');
   const modesPanels = document.querySelectorAll('.modes__panel');
 
   modesTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.mode;
 
-      // Update tabs
       modesTabs.forEach(t => t.classList.remove('modes__tab--active'));
       tab.classList.add('modes__tab--active');
 
-      // Update panels with fade
       modesPanels.forEach(panel => {
         if (panel.id === `mode-${target}`) {
           panel.style.opacity = '0';
@@ -139,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.style.opacity = '1';
           });
           panel.classList.add('modes__panel--active');
-          // Trigger fade-up for children
           panel.querySelectorAll('.fade-up').forEach(el => {
             el.classList.remove('visible');
             setTimeout(() => el.classList.add('visible'), 50);
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Make "Just tell me" in Driver panel work
+  // "Just tell me" inside Driver panel demo
   const miniTellBtns = document.querySelectorAll('.mini-chat__tell-btn');
   miniTellBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -165,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         hintMsg.textContent = 'The team agreed on a phased rollout: internal beta by Oct 18, public API in November. Backend owns the timeline.';
         btn.style.display = 'none';
 
-        // Add source
         const source = document.createElement('div');
         source.className = 'mini-chat__source';
         source.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> Engineering Sync — 18:42`;
@@ -175,77 +174,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================================
-  // CONTEXTUAL RECALL DEMO — Toggle hint / direct
+  // EARLY ACCESS FORM — Submission
   // ============================================================
-  const recallToggle = document.getElementById('recall-toggle');
-  const recallHint = document.getElementById('recall-hint');
-  const recallDirect = document.getElementById('recall-direct');
-  const recallModeBadge = document.getElementById('recall-mode-badge');
+  const eaForm    = document.getElementById('early-access-form');
+  const eaSuccess = document.getElementById('ea-success');
 
-  if (recallToggle && recallHint && recallDirect) {
-    let showingDirect = false;
-
-    recallToggle.addEventListener('click', () => {
-      if (!showingDirect) {
-        // Switch to direct answer
-        recallHint.style.opacity = '0';
-        setTimeout(() => {
-          recallHint.style.display = 'none';
-          recallDirect.style.display = 'block';
-          recallDirect.style.opacity = '0';
-          requestAnimationFrame(() => {
-            recallDirect.style.transition = 'opacity 0.3s ease';
-            recallDirect.style.opacity = '1';
-          });
-        }, 200);
-        recallToggle.textContent = '← Back to hint';
-        // Update badge to Passenger
-        recallModeBadge.innerHTML = `<img src="assets/passenger.png" alt="" /> Passenger Mode`;
-        showingDirect = true;
-      } else {
-        // Switch back to hint
-        recallDirect.style.opacity = '0';
-        setTimeout(() => {
-          recallDirect.style.display = 'none';
-          recallHint.style.display = 'block';
-          recallHint.style.opacity = '0';
-          requestAnimationFrame(() => {
-            recallHint.style.transition = 'opacity 0.3s ease';
-            recallHint.style.opacity = '1';
-          });
-        }, 200);
-        recallToggle.textContent = 'Just tell me →';
-        // Update badge to Driver
-        recallModeBadge.innerHTML = `<img src="assets/driver.png" alt="" /> Driver Mode`;
-        showingDirect = false;
-      }
-    });
-  }
-
-  // ============================================================
-  // CONTACT FORM — Submission
-  // ============================================================
-  const contactForm = document.getElementById('contact-form');
-  const formSuccess = document.getElementById('form-success');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+  if (eaForm) {
+    eaForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = contactForm.querySelector('.contact-form__submit');
-      submitBtn.textContent = 'Sending…';
+
+      const emailInput = eaForm.querySelector('#ea-email');
+      if (!emailInput.value || !emailInput.validity.valid) {
+        emailInput.focus();
+        return;
+      }
+
+      const submitBtn = eaForm.querySelector('.early-access__submit');
+      submitBtn.textContent = 'Joining…';
       submitBtn.disabled = true;
 
       setTimeout(() => {
-        contactForm.querySelectorAll('.contact-form__field').forEach(f => f.style.display = 'none');
-        contactForm.querySelector('.contact-form__row').style.display = 'none';
+        eaForm.querySelectorAll('.early-access__field').forEach(f => f.style.display = 'none');
         submitBtn.style.display = 'none';
-        formSuccess.style.display = 'flex';
-      }, 900);
+        eaForm.querySelector('.early-access__note').style.display = 'none';
+        eaSuccess.style.display = 'flex';
+      }, 800);
     });
   }
 
   // ============================================================
-  // SMOOTH SCROLL for anchor links
+  // SMOOTH SCROLL for all internal anchor links
   // ============================================================
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
@@ -279,15 +237,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     drift();
   }
-
-  // ============================================================
-  // INITIAL FADE-UPs — trigger visible elements immediately
-  // ============================================================
-  fadeEls.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      setTimeout(() => el.classList.add('visible'), 100);
-    }
-  });
 
 });
