@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SteerWell — You drive the AI. SteerWell follows.</title>
+  <meta name="description" content="SteerWell is an AI meeting assistant built around user control. Choose how much AI you want: Driver, Passenger, or Just Capture." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo" aria-label="SteerWell home">
+        <img src="assets/logo.jpeg" alt="SteerWell" class="navbar__logo-img" />
+      </a>
+      <nav class="navbar__nav" id="nav-menu" aria-label="Main navigation">
+        <a href="#product" class="navbar__link">Product</a>
+        <a href="#how-it-works" class="navbar__link">How it works</a>
+        <a href="#pricing" class="navbar__link">Pricing</a>
+        <a href="#privacy" class="navbar__link">Privacy</a>
+      </nav>
+      <a href="#early-access" class="btn btn--primary navbar__cta">Get Early Access</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="navbar__mobile" id="mobile-menu" aria-hidden="true">
+      <a href="#product" class="navbar__mobile-link">Product</a>
+      <a href="#how-it-works" class="navbar__mobile-link">How it works</a>
+      <a href="#pricing" class="navbar__mobile-link">Pricing</a>
+      <a href="#privacy" class="navbar__mobile-link">Privacy</a>
+      <a href="#early-access" class="btn btn--primary navbar__mobile-cta">Get Early Access</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="product">
+      <div class="hero__bg-gradient" aria-hidden="true"></div>
+      <div class="container hero__container">
+        <div class="hero__content fade-up">
+          <div class="hero__eyebrow">AI meeting assistant</div>
+          <h1 class="hero__headline">Who's driving<br /><em>today?</em></h1>
+          <p class="hero__tagline">You drive the AI. SteerWell follows.</p>
+          <p class="hero__body">Meetings are full of decisions, context, commitments, and ideas you'll need later. SteerWell helps you remember and retrieve what matters — while letting you decide how much AI you want.</p>
+          <div class="hero__actions">
+            <a href="#early-access" class="btn btn--primary btn--lg">Get Early Access</a>
+            <a href="#how-it-works" class="btn btn--ghost btn--lg">See how it works ↓</a>
+          </div>
+        </div>
+
+        <div class="hero__visual fade-up" style="--delay: 0.15s">
+          <!-- Product UI Mockup -->
+          <div class="product-mockup">
+            <div class="mockup__header">
+              <div class="mockup__dot mockup__dot--red"></div>
+              <div class="mockup__dot mockup__dot--yellow"></div>
+              <div class="mockup__dot mockup__dot--green"></div>
+              <span class="mockup__title">Product Planning — Live</span>
+              <div class="mockup__live-badge"><span class="mockup__live-dot"></span>Recording</div>
+            </div>
+            <div class="mockup__body">
+              <!-- Mode selector -->
+              <div class="mockup__mode-row">
+                <span class="mockup__mode-label">Mode</span>
+                <div class="mockup__mode-tabs">
+                  <button class="mockup__mode-tab mockup__mode-tab--active" data-mode="driver">
+                    <img src="assets/driver.png" alt="" class="mockup__mode-icon" />
+                    Driver
+                  </button>
+                  <button class="mockup__mode-tab" data-mode="passenger">
+                    <img src="assets/passenger.png" alt="" class="mockup__mode-icon" />
+                    Passenger
+                  </button>
+                  <button class="mockup__mode-tab" data-mode="capture">
+                    <img src="assets/microphone.png" alt="" class="mockup__mode-icon" />
+                    Just Capture
+                  </button>
+                </div>
+              </div>
+              <!-- Transcript snippet -->
+              <div class="mockup__transcript">
+                <div class="transcript__line">
+                  <span class="transcript__speaker">Priya</span>
+                  <span class="transcript__text">…so the engineering team flagged a dependency. We need to decide if we push the launch.</span>
+                  <span class="transcript__time">31:48</span>
+                </div>
+                <div class="transcript__line">
+                  <span class="transcript__speaker">Arjun</span>
+                  <span class="transcript__text">Let's move it one week. October 18 gives us enough buffer.</span>
+                  <span class="transcript__time">32:14</span>
+                </div>
+                <div class="transcript__line transcript__line--highlight">
+                  <span class="transcript__speaker">Priya</span>
+                  <span class="transcript__text">Agreed. October 18 is the new launch date.</span>
+                  <span class="transcript__time">32:31</span>
+                </div>
+              </div>
+              <!-- Recall interaction -->
+              <div class="mockup__recall">
+                <div class="recall__user">
+                  <span class="recall__avatar recall__avatar--user">Z</span>
+                  <span class="recall__bubble recall__bubble--user">What did we decide about the launch?</span>
+                </div>
+                <div class="recall__sw" id="hero-sw-response">
+                  <div class="recall__sw-inner">
+                    <div class="recall__sw-logo">
+                      <img src="assets/logo.jpeg" alt="SteerWell" />
+                    </div>
+                    <div class="recall__content">
+                      <p class="recall__bubble recall__bubble--sw recall__bubble--hint" id="hero-hint-bubble">Think back to the timeline discussion. You changed the target after the engineering estimate.</p>
+                      <p class="recall__bubble recall__bubble--sw recall__bubble--answer" id="hero-answer-bubble" style="display:none">We moved the launch to <strong>October 18</strong> — one week later than planned, after the engineering team flagged a dependency.</p>
+                      <div class="recall__source" id="hero-source">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                        Product Planning — 32:14
+                      </div>
+                      <button class="recall__tell-me" id="hero-tell-me">Just tell me →</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST STRIP
+    ============================================================ -->
+    <section class="trust-strip fade-up">
+      <div class="container">
+        <p class="trust-strip__headline">Your meeting. Your memory. Your choice.</p>
+        <div class="trust-strip__points">
+          <div class="trust-strip__point">
+            <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Transparent capture</span>
+          </div>
+          <div class="trust-strip__divider" aria-hidden="true">·</div>
+          <div class="trust-strip__point">
+            <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            <span>Control how AI helps</span>
+          </div>
+          <div class="trust-strip__divider" aria-hidden="true">·</div>
+          <div class="trust-strip__point">
+            <svg class="trust-strip__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Keep what matters</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         THREE MODES
+    ============================================================ -->
+    <section class="section modes" id="how-it-works">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Three modes</div>
+          <h2 class="section__headline">AI assistance, on your terms.</h2>
+          <p class="section__subhead">Not every meeting is the same. Not every moment needs the same level of AI. SteerWell adapts to you.</p>
+        </div>
+
+        <div class="modes__selector fade-up">
+          <button class="modes__tab modes__tab--active" data-mode="driver">
+            <img src="assets/driver.png" alt="" class="modes__tab-icon" />
+            Driver
+          </button>
+          <button class="modes__tab" data-mode="passenger">
+            <img src="assets/passenger.png" alt="" class="modes__tab-icon" />
+            Passenger
+          </button>
+          <button class="modes__tab" data-mode="capture">
+            <img src="assets/microphone.png" alt="" class="modes__tab-icon" />
+            Just Capture
+          </button>
+        </div>
+
+        <div class="modes__panels">
+          <!-- Driver Panel -->
+          <div class="modes__panel modes__panel--active" id="mode-driver">
+            <div class="modes__panel-content">
+              <div class="modes__panel-text fade-up">
+                <img src="assets/driver.png" alt="Driver mode" class="modes__panel-bigicon" />
+                <h3 class="modes__panel-title">Driver</h3>
+                <p class="modes__panel-tagline">"You think. I'll help you remember."</p>
+                <p class="modes__panel-body">SteerWell gives you contextual cues — hints drawn from the actual meeting context — so you can recall information yourself. You stay in the driver's seat. The AI is a co-pilot who knows when to stay quiet.</p>
+                <p class="modes__panel-body">If you need the direct answer, just ask. SteerWell will give it to you immediately.</p>
+                <div class="modes__panel-use-case">Best for: active learners, people who want to stay engaged, and situations where your own recall matters.</div>
+              </div>
+              <div class="modes__panel-demo">
+                <div class="mini-mockup">
+                  <div class="mini-mockup__header">Driver Mode — Active</div>
+                  <div class="mini-mockup__chat">
+                    <div class="mini-chat__user">
+                      <span class="mini-chat__avatar">Z</span>
+                      <span class="mini-chat__msg">What did we agree on for the API rollout?</span>
+                    </div>
+                    <div class="mini-chat__sw">
+                      <div class="mini-chat__sw-logo"><img src="assets/logo.jpeg" alt="SteerWell" /></div>
+                      <div>
+                        <span class="mini-chat__msg mini-chat__msg--hint">Think back to when the backend team shared their timeline. There was a phased approach mentioned.</span>
+                        <button class="mini-chat__tell-btn">Just tell me</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passenger Panel -->
+          <div class="modes__panel" id="mode-passenger">
+            <div class="modes__panel-content">
+              <div class="modes__panel-text fade-up">
+                <img src="assets/passenger.png" alt="Passenger mode" class="modes__panel-bigicon" />
+                <h3 class="modes__panel-title">Passenger</h3>
+                <p class="modes__panel-tagline">"You relax. I'll handle the recall."</p>
+                <p class="modes__panel-body">SteerWell directly answers your questions using the full meeting context. Answers are precise and backed by source references — the exact moment in the meeting where the information came from.</p>
+                <p class="modes__panel-body">You focus on the conversation. SteerWell keeps track of the details.</p>
+                <div class="modes__panel-use-case">Best for: back-to-back days, high-context meetings, and when you need answers fast.</div>
+              </div>
+              <div class="modes__panel-demo">
+                <div class="mini-mockup">
+                  <div class="mini-mockup__header">Passenger Mode — Active</div>
+                  <div class="mini-mockup__chat">
+                    <div class="mini-chat__user">
+                      <span class="mini-chat__avatar">Z</span>
+                      <span class="mini-chat__msg">What was the final decision on the API rollout?</span>
+                    </div>
+                    <div class="mini-chat__sw">
+                      <div class="mini-chat__sw-logo"><img src="assets/logo.jpeg" alt="SteerWell" /></div>
+                      <div>
+                        <span class="mini-chat__msg mini-chat__msg--answer">The team agreed on a phased rollout: internal beta by Oct 18, public API in November. Backend owns the timeline.</span>
+                        <div class="mini-chat__source">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                          Engineering Sync — 18:42
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Just Capture Panel -->
+          <div class="modes__panel" id="mode-capture">
+            <div class="modes__panel-content">
+              <div class="modes__panel-text fade-up">
+                <img src="assets/microphone.png" alt="Just Capture mode" class="modes__panel-bigicon" />
+                <h3 class="modes__panel-title">Just Capture</h3>
+                <p class="modes__panel-tagline">"Record + transcribe. Nothing more."</p>
+                <p class="modes__panel-body">Sometimes you just need a record of what was said. SteerWell captures and transcribes your meeting without active AI assistance. No summaries. No prompts. No interruptions.</p>
+                <p class="modes__panel-body">The transcript is yours. You can switch to Driver or Passenger mode later if you want to recall something specific.</p>
+                <div class="modes__panel-use-case">Best for: sensitive meetings, 1:1s, and situations where you prefer to process notes yourself.</div>
+              </div>
+              <div class="modes__panel-demo">
+                <div class="mini-mockup">
+                  <div class="mini-mockup__header">Just Capture — Transcribing</div>
+                  <div class="mini-mockup__transcript">
+                    <div class="mini-transcript__line">
+                      <span class="mini-transcript__speaker">Priya</span>
+                      <span class="mini-transcript__text">Let's discuss the hiring plan for Q4.</span>
+                      <span class="mini-transcript__time">02:11</span>
+                    </div>
+                    <div class="mini-transcript__line">
+                      <span class="mini-transcript__speaker">Arjun</span>
+                      <span class="mini-transcript__text">We need two engineers and one designer by December.</span>
+                      <span class="mini-transcript__time">02:24</span>
+                    </div>
+                    <div class="mini-transcript__line mini-transcript__line--current">
+                      <span class="mini-transcript__speaker">Priya</span>
+                      <span class="mini-transcript__text">Agreed. I'll post the JDs this week.</span>
+                      <span class="mini-transcript__time">02:38</span>
+                    </div>
+                    <div class="mini-transcript__cursor">
+                      <span class="mini-transcript__pulse"></span>
+                      Transcribing…
+                    </div>
+                  </div>
+                  <div class="mini-mockup__ai-off">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    Active AI assistance is off
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTEXTUAL RECALL
+    ============================================================ -->
+    <section class="section recall-section" id="recall">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Contextual recall</div>
+          <h2 class="section__headline">Remember the conversation.<br />Not just the transcript.</h2>
+          <p class="section__subhead">SteerWell understands the context of your meetings so you can recover decisions, details, and commitments — without rewatching an hour-long recording.</p>
+        </div>
+        <div class="recall-demo fade-up">
+          <div class="recall-demo__context">
+            <div class="recall-demo__context-label">From your meeting</div>
+            <div class="recall-demo__transcript-lines">
+              <div class="recall-demo__tline">
+                <span class="recall-demo__speaker">Arjun</span>
+                <span class="recall-demo__text">Engineering says they need one more week to clear the API dependency.</span>
+                <span class="recall-demo__time">31:52</span>
+              </div>
+              <div class="recall-demo__tline recall-demo__tline--hl">
+                <span class="recall-demo__speaker">Priya</span>
+                <span class="recall-demo__text">Okay, let's move the launch to October 18 then. Everyone agreed?</span>
+                <span class="recall-demo__time">32:14</span>
+              </div>
+              <div class="recall-demo__tline">
+                <span class="recall-demo__speaker">Team</span>
+                <span class="recall-demo__text">Agreed.</span>
+                <span class="recall-demo__time">32:19</span>
+              </div>
+            </div>
+          </div>
+          <div class="recall-demo__interaction">
+            <div class="recall-demo__question">
+              <span class="recall-demo__q-label">You asked</span>
+              <p class="recall-demo__q-text">"What did we decide about the launch?"</p>
+            </div>
+            <div class="recall-demo__answer-area" id="recall-area">
+              <!-- Default: Driver hint -->
+              <div class="recall-demo__mode-badge" id="recall-mode-badge">
+                <img src="assets/driver.png" alt="" />
+                Driver Mode
+              </div>
+              <div class="recall-demo__hint" id="recall-hint">
+                <p>Think back to the timeline discussion. There was a change after the engineering team shared their estimate.</p>
+              </div>
+              <div class="recall-demo__direct" id="recall-direct" style="display:none">
+                <p>We moved the launch to <strong>October 18</strong> — one week later than planned, to accommodate the engineering team's API dependency.</p>
+              </div>
+              <div class="recall-demo__source">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                Product Planning — 32:14 &nbsp;·&nbsp; <a href="#" class="recall-demo__jump">Jump to source →</a>
+              </div>
+              <button class="btn btn--ghost btn--sm recall-demo__toggle" id="recall-toggle">Just tell me →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EVIDENCE-BACKED ANSWERS
+    ============================================================ -->
+    <section class="section evidence-section">
+      <div class="container">
+        <div class="evidence-section__inner">
+          <div class="evidence-section__text fade-up">
+            <div class="section__eyebrow">Evidence-backed</div>
+            <h2 class="section__headline">Never wonder where an answer came from.</h2>
+            <p class="section__subhead">Every answer SteerWell gives in Passenger Mode is tied to a specific moment in your meeting. You can always trace it back to the source.</p>
+          </div>
+          <div class="evidence-card fade-up" style="--delay:0.1s">
+            <div class="evidence-card__q">
+              <span class="evidence-card__q-label">Question</span>
+              <p class="evidence-card__q-text">What was the final decision on the launch?</p>
+            </div>
+            <div class="evidence-card__a">
+              <div class="evidence-card__a-header">
+                <img src="assets/logo.jpeg" alt="SteerWell" class="evidence-card__sw-logo" />
+                <span>SteerWell</span>
+              </div>
+              <p class="evidence-card__a-text">Launch moved to <strong>October 18.</strong></p>
+              <div class="evidence-card__source-block">
+                <div class="evidence-card__source-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                  Product Planning Meeting · 32:14
+                </div>
+                <a href="#" class="evidence-card__jump">Jump to source →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOLLOW-UP NOTES
+    ============================================================ -->
+    <section class="section notes-section">
+      <div class="container">
+        <div class="notes-section__inner">
+          <div class="notes-card fade-up">
+            <div class="notes-card__meeting-ctx">
+              <div class="notes-card__ctx-label">Meeting context</div>
+              <div class="notes-card__ctx-line">
+                <span class="notes-card__ctx-speaker">Arjun</span>
+                <span class="notes-card__ctx-text">The API dependency is on our side — it's a versioning issue with the auth service.</span>
+                <span class="notes-card__ctx-time">31:55</span>
+              </div>
+            </div>
+            <div class="notes-card__connector">
+              <div class="notes-card__connector-line"></div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            </div>
+            <div class="notes-card__note">
+              <div class="notes-card__note-label">Your note</div>
+              <p class="notes-card__note-text">Ask engineering about the auth service versioning — is this blocking the rollout or can we ship a patch?</p>
+              <div class="notes-card__note-meta">Added · Today, 3:48 PM</div>
+            </div>
+          </div>
+          <div class="notes-section__text fade-up" style="--delay:0.1s">
+            <div class="section__eyebrow">Follow-up notes</div>
+            <h2 class="section__headline">Add your own layer to the conversation.</h2>
+            <p class="section__subhead">Attach your own notes to any moment in the meeting. Your context, your questions, your follow-ups — connected to exactly where they belong.</p>
+            <p class="section__subhead">Notes stay linked to the meeting moment so you always have the full picture when you come back.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CROSS-MEETING MEMORY
+    ============================================================ -->
+    <section class="section memory-section">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Cross-meeting memory</div>
+          <h2 class="section__headline">One meeting is useful.<br />Connected meetings are better.</h2>
+          <p class="section__subhead">SteerWell remembers across meetings so you don't have to reconstruct the story from scratch. Retrieve the thread of a decision across multiple sessions.</p>
+        </div>
+        <div class="memory-timeline fade-up">
+          <div class="memory-node">
+            <div class="memory-node__dot"></div>
+            <div class="memory-node__card">
+              <div class="memory-node__date">Sep 18 · Product Planning</div>
+              <p class="memory-node__content">Launch target discussed — original date <strong>Oct 11.</strong> Engineering flagged risk.</p>
+            </div>
+          </div>
+          <div class="memory-connector">
+            <div class="memory-connector__line"></div>
+            <div class="memory-connector__label">SteerWell connected this</div>
+          </div>
+          <div class="memory-node">
+            <div class="memory-node__dot"></div>
+            <div class="memory-node__card">
+              <div class="memory-node__date">Sep 25 · Engineering Sync</div>
+              <p class="memory-node__content">API dependency confirmed. Team requested one additional week.</p>
+            </div>
+          </div>
+          <div class="memory-connector">
+            <div class="memory-connector__line"></div>
+            <div class="memory-connector__label">SteerWell connected this</div>
+          </div>
+          <div class="memory-node memory-node--final">
+            <div class="memory-node__dot"></div>
+            <div class="memory-node__card">
+              <div class="memory-node__date">Oct 2 · Stakeholder Update</div>
+              <p class="memory-node__content">Launch officially moved to <strong>Oct 18.</strong> All teams aligned.</p>
+            </div>
+          </div>
+        </div>
+        <p class="memory-section__note fade-up">Cross-meeting memory is available on the Pro plan. SteerWell does not claim perfect recall — memory is based on what was captured in your meetings.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPORT & KEEP
+    ============================================================ -->
+    <section class="section export-section">
+      <div class="container">
+        <div class="export-section__inner">
+          <div class="export-section__text fade-up">
+            <div class="section__eyebrow">Export &amp; keep</div>
+            <h2 class="section__headline">Take your meeting knowledge with you.</h2>
+            <p class="section__subhead">Export the information you actually need and keep it independently of SteerWell.</p>
+            <p class="section__subhead">Retention controls how long SteerWell stores your meeting data. Export lets you keep the information you actually need.</p>
+            <a href="#" class="btn btn--primary">Export meeting</a>
+          </div>
+          <div class="export-card fade-up" style="--delay:0.1s">
+            <div class="export-card__header">
+              <img src="assets/logo.jpeg" alt="SteerWell" class="export-card__logo" />
+              <div>
+                <div class="export-card__title">Product Planning</div>
+                <div class="export-card__date">October 2, 2026 · 47 min</div>
+              </div>
+              <div class="export-card__pdf-badge">PDF</div>
+            </div>
+            <div class="export-card__section">
+              <div class="export-card__section-title">Meeting Summary</div>
+              <p class="export-card__section-body">Team reviewed Q4 launch readiness and addressed the API dependency raised by engineering. Launch date adjusted to October 18.</p>
+            </div>
+            <div class="export-card__section">
+              <div class="export-card__section-title">Key Decisions</div>
+              <ul class="export-card__list">
+                <li>Launch moved from Oct 11 → <strong>Oct 18</strong></li>
+                <li>Backend team owns API dependency resolution</li>
+                <li>Phased rollout: internal beta first</li>
+              </ul>
+            </div>
+            <div class="export-card__section">
+              <div class="export-card__section-title">Action Items</div>
+              <ul class="export-card__list">
+                <li>Priya: Update launch comms by Oct 5</li>
+                <li>Arjun: Auth service patch — ETA Oct 14</li>
+                <li>Ziya: Post JDs for Q4 engineering roles</li>
+              </ul>
+            </div>
+            <div class="export-card__section">
+              <div class="export-card__section-title">Key Timestamps</div>
+              <div class="export-card__timestamps">
+                <span class="export-card__ts">31:48 — API dependency discussed</span>
+                <span class="export-card__ts">32:14 — Launch date changed</span>
+                <span class="export-card__ts">41:02 — Action items confirmed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRANSPARENT CAPTURE
+    ============================================================ -->
+    <section class="section transparent-section" id="privacy">
+      <div class="container">
+        <div class="transparent-section__inner">
+          <div class="transparent-section__text fade-up">
+            <div class="section__eyebrow">Transparent capture</div>
+            <h2 class="section__headline">No mystery participant.</h2>
+            <p class="section__subhead">When SteerWell joins a meeting, it identifies itself and makes clear what it's doing. Participants know what's being captured and can access privacy details at any time.</p>
+          </div>
+          <div class="chat-mockup fade-up" style="--delay:0.1s">
+            <div class="chat-mockup__header">
+              <div class="chat-mockup__meeting-name">Product Planning · In progress</div>
+              <div class="chat-mockup__participants">4 participants</div>
+            </div>
+            <div class="chat-mockup__messages">
+              <div class="chat-mockup__msg chat-mockup__msg--system">
+                <img src="assets/logo.jpeg" alt="SteerWell" class="chat-mockup__sw-avatar" />
+                <div class="chat-mockup__msg-body">
+                  <div class="chat-mockup__msg-sender">SteerWell</div>
+                  <p class="chat-mockup__msg-text">Hi, I'm SteerWell, Ziya's AI meeting assistant. I'm recording and transcribing this meeting.</p>
+                  <a href="#privacy" class="chat-mockup__privacy-link">Learn what I'm capturing, how it's processed, and how long it's retained → Privacy details</a>
+                </div>
+              </div>
+              <div class="chat-mockup__divider">· · ·</div>
+              <div class="chat-mockup__msg chat-mockup__msg--reminder">
+                <div class="chat-mockup__reminder-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                </div>
+                <div class="chat-mockup__msg-body">
+                  <p class="chat-mockup__msg-text chat-mockup__msg-text--small">This meeting is scheduled to end in 5 minutes.</p>
+                  <a href="#privacy" class="chat-mockup__privacy-link">How SteerWell is capturing, processing, and retaining this meeting → Privacy details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRIVACY CONTROLS
+    ============================================================ -->
+    <section class="section privacy-section">
+      <div class="container">
+        <div class="privacy-section__inner">
+          <div class="privacy-card fade-up">
+            <div class="privacy-card__header">
+              <h3 class="privacy-card__title">Meeting Data Controls</h3>
+              <span class="privacy-card__badge">Your settings</span>
+            </div>
+            <div class="privacy-card__controls">
+              <div class="privacy-control">
+                <div class="privacy-control__icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="privacy-control__info">
+                  <div class="privacy-control__label">Access</div>
+                  <div class="privacy-control__desc">Only you can access your meeting data. You choose what to share.</div>
+                </div>
+                <div class="privacy-control__status privacy-control__status--ok">You only</div>
+              </div>
+              <div class="privacy-control">
+                <div class="privacy-control__icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="privacy-control__info">
+                  <div class="privacy-control__label">Retention</div>
+                  <div class="privacy-control__desc">Control how long SteerWell stores your meeting data.</div>
+                </div>
+                <div class="privacy-control__status">30 days</div>
+              </div>
+              <div class="privacy-control">
+                <div class="privacy-control__icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <div class="privacy-control__info">
+                  <div class="privacy-control__label">Export</div>
+                  <div class="privacy-control__desc">Download your transcripts, decisions, and notes at any time.</div>
+                </div>
+                <div class="privacy-control__status privacy-control__status--ok">Available</div>
+              </div>
+              <div class="privacy-control">
+                <div class="privacy-control__icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                </div>
+                <div class="privacy-control__info">
+                  <div class="privacy-control__label">Delete</div>
+                  <div class="privacy-control__desc">Permanently delete any meeting record or your account at any time.</div>
+                </div>
+                <div class="privacy-control__status privacy-control__status--warn">On request</div>
+              </div>
+            </div>
+          </div>
+          <div class="privacy-section__text fade-up" style="--delay:0.1s">
+            <div class="section__eyebrow">Privacy controls</div>
+            <h2 class="section__headline">Know what happens to your meeting data.</h2>
+            <p class="section__subhead">Privacy shouldn't be buried in a settings page. SteerWell puts your data controls front and centre, so you always know what's happening with your meeting information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         USE CASES
+    ============================================================ -->
+    <section class="section use-cases">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Use cases</div>
+          <h2 class="section__headline">Built for how you actually work.</h2>
+        </div>
+        <div class="use-cases__grid">
+          <div class="use-case-card fade-up">
+            <div class="use-case-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="use-case-card__title">Product Managers</h3>
+            <p class="use-case-card__body">Recover decisions from back-to-back meetings without rewatching recordings. Ask SteerWell what was agreed — and see exactly where it came from.</p>
+          </div>
+          <div class="use-case-card fade-up" style="--delay:0.05s">
+            <div class="use-case-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3 class="use-case-card__title">Learners</h3>
+            <p class="use-case-card__body">Use Driver Mode to actively recall what you learned. SteerWell gives you context clues so you build the memory yourself — not just read a summary.</p>
+          </div>
+          <div class="use-case-card fade-up" style="--delay:0.1s">
+            <div class="use-case-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            </div>
+            <h3 class="use-case-card__title">Busy Professionals</h3>
+            <p class="use-case-card__body">Switch to Passenger Mode when you need the answer immediately. Direct, sourced, and ready — without digging through a long transcript.</p>
+          </div>
+          <div class="use-case-card fade-up" style="--delay:0.15s">
+            <div class="use-case-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </div>
+            <h3 class="use-case-card__title">Capture-Only Meetings</h3>
+            <p class="use-case-card__body">Record and transcribe without active AI assistance. Just Capture is there for 1:1s, sensitive meetings, and moments where you'd rather process notes yourself.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RESEARCH / SOCIAL PROOF
+    ============================================================ -->
+    <section class="section research-section">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Research findings</div>
+          <h2 class="section__headline">Built around what meeting tools get right — and what users still want.</h2>
+          <p class="section__subhead">These observations are drawn from published research and user reviews of existing AI meeting tools. They informed the design of SteerWell.</p>
+        </div>
+        <div class="research-grid fade-up">
+          <div class="research-card">
+            <div class="research-card__number">01</div>
+            <p class="research-card__finding">Users value automated transcription and summaries — but many still feel they lose context compared to attending the meeting themselves.</p>
+            <div class="research-card__label">Finding from user research on AI meeting tools</div>
+          </div>
+          <div class="research-card">
+            <div class="research-card__number">02</div>
+            <p class="research-card__finding">A recurring frustration: AI bots that join meetings without clear notice create friction and distrust — even among the people who invited them.</p>
+            <div class="research-card__label">Finding from Trustpilot &amp; G2 review analysis</div>
+          </div>
+          <div class="research-card">
+            <div class="research-card__number">03</div>
+            <p class="research-card__finding">Professionals in back-to-back meeting schedules lose track of decisions within hours. The need isn't just summaries — it's retrievable, sourced answers.</p>
+            <div class="research-card__label">Finding from workplace productivity research</div>
+          </div>
+          <div class="research-card">
+            <div class="research-card__number">04</div>
+            <p class="research-card__finding">Users are wary of tools that score, analyze, or judge how they communicate. Sentiment surveillance is among the most-cited concerns in negative reviews.</p>
+            <div class="research-card__label">Finding from user review analysis</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRICING
+    ============================================================ -->
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <div class="section__header fade-up">
+          <div class="section__eyebrow">Pricing</div>
+          <h2 class="section__headline">Start free. Upgrade when you're ready.</h2>
+          <p class="section__subhead">The core SteerWell experience — Driver, Passenger, and Just Capture — is free. No paywall on the modes that make SteerWell different.</p>
+        </div>
+        <div class="pricing__grid fade-up">
+
+          <div class="pricing-card">
+            <div class="pricing-card__plan">Free</div>
+            <div class="pricing-card__price">₹0<span>/month</span></div>
+            <p class="pricing-card__desc">Everything you need to start using SteerWell today.</p>
+            <a href="#early-access" class="btn btn--outline pricing-card__cta">Get Started</a>
+            <ul class="pricing-card__features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Driver Mode</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Passenger Mode</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Just Capture</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Basic meeting recaps</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Evidence-backed answers</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30-day retention</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>PDF export</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card pricing-card--featured">
+            <div class="pricing-card__badge">Most popular</div>
+            <div class="pricing-card__plan">Pro</div>
+            <div class="pricing-card__price">₹799<span>/month</span></div>
+            <p class="pricing-card__desc">For professionals who need memory and depth across meetings.</p>
+            <a href="#early-access" class="btn btn--primary pricing-card__cta">Go Pro</a>
+            <ul class="pricing-card__features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Free</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cross-meeting memory</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Advanced contextual recall</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Follow-up notes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>90-day retention</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Advanced contextual feedback</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Higher meeting capacity</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-card__plan">Team</div>
+            <div class="pricing-card__price">Custom</div>
+            <p class="pricing-card__desc">For teams that need shared knowledge and admin controls.</p>
+            <a href="#contact" class="btn btn--outline pricing-card__cta">Contact us</a>
+            <ul class="pricing-card__features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Shared meeting knowledge</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Team &amp; admin controls</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>300-day retention</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Custom retention policies</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FINAL CTA
+    ============================================================ -->
+    <section class="section final-cta" id="early-access">
+      <div class="container">
+        <div class="final-cta__inner fade-up">
+          <div class="final-cta__bg" aria-hidden="true"></div>
+          <h2 class="final-cta__headline">Who's driving<br /><em>today?</em></h2>
+          <p class="final-cta__tagline">You drive. SteerWell follows.</p>
+          <p class="final-cta__body">Choose how you want AI to help you remember, retrieve, and act on what matters.</p>
+          <a href="#contact" class="btn btn--primary btn--lg">Get Early Access</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM
+    ============================================================ -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-section__inner">
+          <div class="contact-section__text fade-up">
+            <div class="section__eyebrow">Contact</div>
+            <h2 class="section__headline">Get in touch.</h2>
+            <p class="section__subhead">Early access, team plans, partnerships, or questions — we'd love to hear from you.</p>
+          </div>
+          <form class="contact-form fade-up" id="contact-form" style="--delay:0.1s" novalidate>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="cf-name" class="contact-form__label">Name</label>
+                <input type="text" id="cf-name" name="name" class="contact-form__input" placeholder="Your name" required />
+              </div>
+              <div class="contact-form__field">
+                <label for="cf-email" class="contact-form__label">Email</label>
+                <input type="email" id="cf-email" name="email" class="contact-form__input" placeholder="you@company.com" required />
+              </div>
+            </div>
+            <div class="contact-form__field">
+              <label for="cf-subject" class="contact-form__label">Subject</label>
+              <select id="cf-subject" name="subject" class="contact-form__input contact-form__select">
+                <option value="">Select a topic…</option>
+                <option value="early-access">Get Early Access</option>
+                <option value="team">Team Plan</option>
+                <option value="partnership">Partnership</option>
+                <option value="general">General Question</option>
+              </select>
+            </div>
+            <div class="contact-form__field">
+              <label for="cf-message" class="contact-form__label">Message</label>
+              <textarea id="cf-message" name="message" class="contact-form__input contact-form__textarea" placeholder="Tell us what you need…" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary contact-form__submit">Send message</button>
+            <div class="contact-form__success" id="form-success" style="display:none">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Message sent. We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a href="#" class="footer__logo">
+            <img src="assets/logo.jpeg" alt="SteerWell" />
+          </a>
+          <p class="footer__tagline">You drive the AI. SteerWell follows.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="#product" class="footer__link">Product</a>
+          <a href="#how-it-works" class="footer__link">How it works</a>
+          <a href="#pricing" class="footer__link">Pricing</a>
+          <a href="#privacy" class="footer__link">Privacy</a>
+          <a href="#contact" class="footer__link">Contact</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 SteerWell. All rights reserved.</p>
+        <p class="footer__legal">SteerWell is a product concept developed for a product management assignment.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
